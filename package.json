@@ -1,0 +1,32 @@
+{
+  "name": "mongoose-email-address-manager",
+  "version": "0.0.1",
+  "description": "Manage multiple email addresses per user (or other model) with this mongoose schema plugin.",
+  "main": "./index.js",
+  "scripts": {
+    "test": "./node_modules/mocha/bin/mocha ./tests -R spec"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/larron/mongoose-email-address-manager.git"
+  },
+  "keywords": [
+    "address",
+    "addresses",
+    "email",
+    "manager",
+    "model",
+    "mongodb",
+    "mongoose",
+    "plugin",
+    "schema"
+  ],
+  "author": "Larron Armstead <me@larronarmstead.com>",
+  "license": "MIT",
+  "readmeFilename": "README.md",
+  "devDependencies": {
+    "mocha": "~1.10.0",
+    "mongoose": "~3.6.11",
+    "should": "~1.2.2"
+  }
+}
