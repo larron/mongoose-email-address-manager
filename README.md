@@ -1,5 +1,7 @@
 # Mongoose Email Address Manager #
 
+## Forked from the original due to an NPM install issue, dependencies updated, otherwise unchanged. ##
+
 Manage multiple email addresses per user (or other model/doc) with this mongoose schema plugin.
 
 Something like...

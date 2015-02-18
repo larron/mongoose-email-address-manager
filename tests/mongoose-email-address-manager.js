@@ -1,18 +1,22 @@
 var mocha = require('mocha'),
     should = require('should'),
-    db = require('mongoose'),
-    emailAddressManagerPlugin = require('../lib/mongoose-email-address-manager');
+    mongoose = require('mongoose'),
+    mockgoose = require('mockgoose'),
+    Schema = mongoose.Schema;
+
+mockgoose(mongoose);
+
+emailAddressManagerPlugin = require('../lib/mongoose-email-address-manager');
 
 describe('Mongoose Email Address Manager', function(){
 
-    db.connect('mongodb://localhost/mongoose-email-address-manager');
-
-    var schema = db.Schema();
+    var schema = Schema();
     schema.plugin(emailAddressManagerPlugin, {unique: !1});
-    var User = db.model('user', schema),
+    var User = mongoose.model('user', schema),
         user;
 
     beforeEach(function(done){
+        mockgoose.reset();
         user = new User({
             email_addresses: [
                 {email_address: 'me@larronarmstead.com'},
@@ -259,6 +263,15 @@ describe('Mongoose Email Address Manager', function(){
             user.isVerifiedEmail('me@larronarmstead.com').should.be.false;
         });
 
+    });
+
+    describe('Reject invalid email addresses', function(){
+       it('should reject an invalid email address'), function(done) {
+           var bad_address = 'foo';
+           user.email_addresses.push(bad_address);
+           user.email_addresses.length.should.have.length(3);
+           done();
+       };
     });
 
 });
