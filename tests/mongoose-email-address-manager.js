@@ -1,18 +1,22 @@
+// TODO: implement mockgoose when/if this is fixed: https://github.com/mccormicka/Mockgoose/issues/114
 var mocha = require('mocha'),
     should = require('should'),
-    db = require('mongoose'),
+    mongoose = require('mongoose'),
+    mockgoose = require('mockgoose'),
+    schema = mongoose.Schema(),
     emailAddressManagerPlugin = require('../lib/mongoose-email-address-manager');
+
+    //mockgoose(mongoose);
+    mongoose.connect('mongodb://localhost/mongoose-email-address-manager');
+    schema.plugin(emailAddressManagerPlugin, {unique: !1});
 
 describe('Mongoose Email Address Manager', function(){
 
-    db.connect('mongodb://localhost/mongoose-email-address-manager');
-
-    var schema = db.Schema();
-    schema.plugin(emailAddressManagerPlugin, {unique: !1});
-    var User = db.model('user', schema),
+    var User = mongoose.model('user', schema),
         user;
 
     beforeEach(function(done){
+        //mockgoose.reset();
         user = new User({
             email_addresses: [
                 {email_address: 'me@larronarmstead.com'},
@@ -26,11 +30,24 @@ describe('Mongoose Email Address Manager', function(){
         });
     });
 
+    // TODO: remove this when mockgoose works
     afterEach(function(done){
         user.remove(function(err, doc){
             if(err) return done(err);
             done();
         });
+    });
+
+    describe('Email address validation', function(){
+
+      it('should validate all email addresses', function(done){
+        user.email_addresses.push({email_address: 'bad-email'});
+        user.save(function(err, user){
+          should(err).exist;
+          done();
+        });
+      });
+
     });
 
     describe('.findOneByEmail', function(){
@@ -81,6 +98,7 @@ describe('Mongoose Email Address Manager', function(){
 
     });
 
+    // Broken with mockgoose, verify that it works when above ticket is fixed
     describe('.findByEmailVerificationCode', function(){
 
         it('should find one doc by an email verification code', function(done){
@@ -134,7 +152,7 @@ describe('Mongoose Email Address Manager', function(){
             user.setPrimaryEmail('larron@larronarmstead.com', function(err, email){
                 if(err) return done(err);
                 email.email_address.should.eql('larron@larronarmstead.com');
-                user.findEmail('me@larronarmstead.com').should.not.have.property('primary');
+                user.findEmail('me@larronarmstead.com').email_address.should.not.have.property('primary');
                 done();
             });
         });

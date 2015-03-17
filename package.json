@@ -1,6 +1,6 @@
 {
   "name": "mongoose-email-address-manager",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Manage multiple email addresses per user (or other model/doc) with this mongoose schema plugin.",
   "main": "./index.js",
   "scripts": {
@@ -21,12 +21,22 @@
     "plugin",
     "schema"
   ],
-  "author": "Larron Armstead <me@larronarmstead.com>",
+  "author": {
+    "name": "Larron Armstead",
+    "email": "me@larronarmstead.com"
+  },
+  "contributors": [
+    {
+      "name": "Casey Capps",
+      "email": "crcapps@gmail.com"
+    }
+  ],
   "license": "MIT",
   "readmeFilename": "README.md",
   "devDependencies": {
-    "mocha": "~1.10.0",
-    "mongoose": "~3.6.11",
-    "should": "~1.2.2"
+    "mocha": "^2.2.1",
+    "mockgoose": "^1.10.7",
+    "mongoose": "^3.8.25",
+    "should": "^5.2.0"
   }
 }
