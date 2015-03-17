@@ -31,7 +31,7 @@ Plug it in...
             unique: true, // defaults to true will throw error if emails are not unique
             verificationCodePrefix: 'emvc-', // useful for web pages that deal with more than one type of access code / validation code (like mobile numbers)
             verificationCodeExpiration: 0, // the amount of hours to add to the expiration date of validation code, defaults to never expire (0)
-            emailValidationRegex = options.emailValidationRegex || /^.+@.+$/ // very simple regex validator for email addresses, overwrite if you want something more powerful :)
+            emailValidationRegex: /^.+@.+$/ // very simple regex validator for email addresses, overwrite if you want something more powerful :)
         };
 
         UserSchema.plugin(emailAddressManagerPlugin, options);
