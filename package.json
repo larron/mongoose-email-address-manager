@@ -1,6 +1,6 @@
 {
   "name": "mongoose-email-address-manager",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Manage multiple email addresses per user (or other model/doc) with this mongoose schema plugin.",
   "main": "./index.js",
   "scripts": {
