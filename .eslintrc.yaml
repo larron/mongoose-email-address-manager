@@ -1,0 +1,33 @@
+---
+extends: airbnb
+env:
+  mocha: true
+  node: true
+parserOptions:
+  ecmaVersion: 8
+  sourceType: module
+globals:
+  expect: false
+rules:
+  import/imports-first: 0
+  import/no-extraneous-dependencies:
+  - 2
+  - devDependencies: true
+  no-underscore-dangle: 0
+  no-return-assign: 0
+  no-console: 0
+  no-mixed-operators: 0
+  func-names: 0
+  no-param-reassign:
+  - 2
+  - props: false
+  semi:
+  - 2
+  - never
+  comma-dangle:
+  - 2
+  - never
+  func-style:
+  - 2
+  - declaration
+  - allowArrowFunctions: true

@@ -1,10 +1,18 @@
 {
   "name": "mongoose-email-address-manager",
-  "version": "0.0.8",
+  "version": "2.0.0",
   "description": "Manage multiple email addresses per user (or other model/doc) with this mongoose schema plugin.",
-  "main": "./index.js",
+  "main": "./lib",
   "scripts": {
-    "test": "./node_modules/mocha/bin/mocha ./tests -R spec"
+    "start": "npm run test:unit:watch & npm run lint:watch",
+    "clean": "rm -rf build && mkdir build",
+    "build": "npm run clean && ./node_modules/.bin/babel ./src -d ./lib --ignore __tests__",
+    "lint": "./node_modules/.bin/eslint .",
+    "lint:fix": "./node_modules/.bin/eslint --fix .",
+    "lint:watch": "./node_modules/.bin/esw -w .",
+    "test": "npm run test:unit",
+    "test:unit": "./node_modules/.bin/mocha --opts ./mocha.opts './*/__tests__/*.spec.js'",
+    "test:unit:watch": "./node_modules/.bin/mocha -w --opts ./mocha.opts './*/__tests__/*.spec.js'"
   },
   "repository": {
     "type": "git",
@@ -34,9 +42,25 @@
   "license": "MIT",
   "readmeFilename": "README.md",
   "devDependencies": {
-    "mocha": "^2.2.1",
-    "mockgoose": "^1.10.7",
-    "mongoose": "^3.8.25",
-    "should": "^5.2.0"
+    "babel": "^6.5.2",
+    "babel-cli": "^6.18.0",
+    "babel-polyfill": "^6.16.0",
+    "babel-preset-bluebird": "^1.0.1",
+    "babel-preset-latest": "^6.16.0",
+    "babel-preset-stage-0": "^6.16.0",
+    "bluebird": "^3.4.6",
+    "chai": "^3.5.0",
+    "chai-as-promised": "^6.0.0",
+    "dirty-chai": "^1.2.2",
+    "eslint": "^3.11.0",
+    "eslint-config-airbnb": "^13.0.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "2.2.3",
+    "eslint-plugin-react": "^6.7.1",
+    "eslint-watch": "^2.1.14",
+    "lodash": "^4.17.2",
+    "mocha": "^3.2.0",
+    "mockgoose": "^6.0.8",
+    "mongoose": "^4.7.0"
   }
 }
