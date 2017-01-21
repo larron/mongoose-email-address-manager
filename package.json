@@ -5,7 +5,7 @@
   "main": "./lib",
   "scripts": {
     "start": "npm run test:unit:watch & npm run lint:watch",
-    "clean": "rm -rf build && mkdir build",
+    "clean": "rm -rf lib && mkdir build",
     "build": "npm run clean && ./node_modules/.bin/babel ./src -d ./lib --ignore __tests__",
     "lint": "./node_modules/.bin/eslint .",
     "lint:fix": "./node_modules/.bin/eslint --fix .",
